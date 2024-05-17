@@ -23,7 +23,7 @@ if [ "${GOARCH}" = 'arm' ]; then
   ARCH_ENV="${ARCH_ENV} GOARM=${GOARM}"
 fi
 
-CMD="${ARCH_ENV} CGO_ENABLED=0 GO_EXTLINK_ENABLED=0 go build -ldflags \"${LDFLAGS}\" -o ../manifest-tool -tags netgo -installsuffix netgo github.com/estesp/manifest-tool/v2/cmd/manifest-tool"
+CMD="${ARCH_ENV} CGO_ENABLED=0 GO_EXTLINK_ENABLED=0 go build -ldflags \"${LDFLAGS}\" -o ../manifest-tool -tags netgo -installsuffix netgo github.com/fourierrr/manifest-tool/v2/cmd/manifest-tool"
 echo "${CMD}"
 eval "${CMD}" || FAILURES=( "${FAILURES[@]}" "${GOOS}/${GOARCH}" )
 cd ..

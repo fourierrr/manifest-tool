@@ -8,8 +8,8 @@ import (
 	"github.com/containerd/containerd/images"
 	"github.com/containerd/containerd/remotes"
 	"github.com/containerd/containerd/remotes/docker"
-	"github.com/estesp/manifest-tool/v2/pkg/store"
-	"github.com/estesp/manifest-tool/v2/pkg/types"
+	"github.com/fourierrr/manifest-tool/v2/pkg/store"
+	"github.com/fourierrr/manifest-tool/v2/pkg/types"
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 )
 

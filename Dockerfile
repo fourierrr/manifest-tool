@@ -11,4 +11,4 @@ RUN set -x \
 	&& make binaries && cp bin/registry /usr/local/bin
 
 # The source is bind-mounted into this folder
-WORKDIR /go/src/github.com/estesp/manifest-tool
+WORKDIR /go/src/github.com/fourierrr/manifest-tool

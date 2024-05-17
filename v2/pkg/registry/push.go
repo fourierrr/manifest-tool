@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/docker/distribution/reference"
-	"github.com/estesp/manifest-tool/v2/pkg/store"
-	"github.com/estesp/manifest-tool/v2/pkg/types"
-	"github.com/estesp/manifest-tool/v2/pkg/util"
+	"github.com/fourierrr/manifest-tool/v2/pkg/store"
+	"github.com/fourierrr/manifest-tool/v2/pkg/types"
+	"github.com/fourierrr/manifest-tool/v2/pkg/util"
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/sirupsen/logrus"
 )

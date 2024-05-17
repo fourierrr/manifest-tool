@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
-          path: src/github.com/estesp/manifest-tool
+          path: src/github.com/fourierrr/manifest-tool
 
       - name: Check signature
         run: |
@@ -32,7 +32,7 @@ jobs:
               echo "Tag ${releasever} is signed."
               exit 0
           }
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
       - name: Release content
         id: contentrel
@@ -40,13 +40,13 @@ jobs:
           RELEASEVER=${{ github.ref }}
           echo "::set-output name=stringver::${RELEASEVER#refs/tags/v}"
           git tag -l ${RELEASEVER#refs/tags/} -n20000 | tail -n +3 | cut -c 5- >release-notes.md
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
       - name: Save release notes
         uses: actions/upload-artifact@v2
         with:
           name: mtool-release-notes
-          path: src/github.com/estesp/manifest-tool/release-notes.md
+          path: src/github.com/fourierrr/manifest-tool/release-notes.md
 
   build:
     name: Build binaries
@@ -74,7 +74,7 @@ jobs:
         with:
           repository: estesp/manifest-tool
           ref: ${{ github.ref }}
-          path: src/github.com/estesp/manifest-tool
+          path: src/github.com/fourierrr/manifest-tool
 
       - name: Make
         shell: bash
@@ -83,13 +83,13 @@ jobs:
           TARFILE="binaries-manifest-tool-${RELEASE_VER#v}.tar.gz"
           tar czf ${TARFILE} manifest-tool-*
           sha256sum ${TARFILE} >${TARFILE}.sha256sum
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
       - name: Save build binaries
         uses: actions/upload-artifact@v2
         with:
           name: manifest-tool-binaries
-          path: src/github.com/estesp/manifest-tool/*.tar.gz*
+          path: src/github.com/fourierrr/manifest-tool/*.tar.gz*
 
   containers-lx:
     name: Build and push Linux release images
@@ -112,7 +112,7 @@ jobs:
         with:
           repository: estesp/manifest-tool
           ref: ${{ github.ref }}
-          path: src/github.com/estesp/manifest-tool
+          path: src/github.com/fourierrr/manifest-tool
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -139,7 +139,7 @@ jobs:
           docker buildx build --platform linux/ppc64le --push -t mplatform/manifest-tool:alpine_linux_ppc64le_${RELEASE_VER} -f hack/Dockerfile.alpine .
           docker buildx build --platform linux/s390x --push -t mplatform/manifest-tool:alpine_linux_s390x_${RELEASE_VER} -f hack/Dockerfile.alpine .
           docker buildx build --platform linux/386 --push -t mplatform/manifest-tool:alpine_linux_i386_${RELEASE_VER} -f hack/Dockerfile.alpine .
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
   containers-win:
     name: Build and push Windows release images
@@ -167,7 +167,7 @@ jobs:
         with:
           repository: estesp/manifest-tool
           ref: ${{ github.ref }}
-          path: src/github.com/estesp/manifest-tool
+          path: src/github.com/fourierrr/manifest-tool
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -183,7 +183,7 @@ jobs:
           docker build -t mplatform/manifest-tool:win2016_${RELEASE_VER} -f hack/Dockerfile.windows2016 .
           docker push mplatform/manifest-tool:win2019_${RELEASE_VER}
           docker push mplatform/manifest-tool:win2016_${RELEASE_VER}
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
   container-assemble:
     name: Assemble and push multi-platform release image
@@ -217,7 +217,7 @@ jobs:
         with:
           repository: estesp/manifest-tool
           ref: ${{ github.ref }}
-          path: src/github.com/estesp/manifest-tool
+          path: src/github.com/fourierrr/manifest-tool
 
       - name: Build and push manifest-list
         env:
@@ -225,7 +225,7 @@ jobs:
         shell: bash
         run: |
           TMPROOT=$(mktemp -d)
-          git clone https://github.com/estesp/manifest-tool.git "${TMPROOT}"/manifest-tool
+          git clone https://github.com/fourierrr/manifest-tool.git "${TMPROOT}"/manifest-tool
           pushd "${TMPROOT}"/manifest-tool
           make binary
           sudo make install PREFIX=/usr/local
@@ -238,7 +238,7 @@ jobs:
           fi
           /usr/local/bin/manifest-tool push from-spec pushml.yml
           /usr/local/bin/manifest-tool push from-spec pushml-alpine.yml
-        working-directory: src/github.com/estesp/manifest-tool
+        working-directory: src/github.com/fourierrr/manifest-tool
 
   release:
     name: Create manifest-tool Release

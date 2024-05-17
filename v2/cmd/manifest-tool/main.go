@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/estesp/manifest-tool/v2/pkg/util"
+	"github.com/fourierrr/manifest-tool/v2/pkg/util"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 )

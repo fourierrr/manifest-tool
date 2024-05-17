@@ -18,26 +18,26 @@ INTERACTIVE := $(shell [ -t 0 ] && echo 1 || echo 0)
 ifeq ($(INTERACTIVE), 1)
 	DOCKER_RUN += -t
 endif
-DOCKER_RUN_DOCKER := $(DOCKER_RUN) -v $(shell pwd):/go/src/github.com/estesp/manifest-tool -w /go/src/github.com/estesp/manifest-tool "$(DOCKER_IMAGE)"
+DOCKER_RUN_DOCKER := $(DOCKER_RUN) -v $(shell pwd):/go/src/github.com/fourierrr/manifest-tool -w /go/src/github.com/fourierrr/manifest-tool "$(DOCKER_IMAGE)"
 
 all: binary
 
 build:
-	$(DOCKER_RUN) -v $(shell pwd):/go/src/github.com/estesp/manifest-tool -w /go/src/github.com/estesp/manifest-tool golang:1.20 /bin/bash -c "\
-		cd v2 && go build -ldflags \"-X main.gitCommit=${COMMIT} main.version=${VERSION}\" -o ../manifest-tool github.com/estesp/manifest-tool/v2/cmd/manifest-tool"
+	$(DOCKER_RUN) -v $(shell pwd):/go/src/github.com/fourierrr/manifest-tool -w /go/src/github.com/fourierrr/manifest-tool golang:1.20 /bin/bash -c "\
+		cd v2 && go build -ldflags \"-X main.gitCommit=${COMMIT} main.version=${VERSION}\" -o ../manifest-tool github.com/fourierrr/manifest-tool/v2/cmd/manifest-tool"
 
 # Target to build a dynamically linked binary
 binary: v2/pkg/util/oslist.go
 	cd v2 && go build \
 		-ldflags "-X main.gitCommit=${COMMIT} -X main.version=${VERSION}" \
-		-o ../manifest-tool github.com/estesp/manifest-tool/v2/cmd/manifest-tool
+		-o ../manifest-tool github.com/fourierrr/manifest-tool/v2/cmd/manifest-tool
 
 # Target to build a statically linked binary
 static: v2/pkg/util/oslist.go
 	cd v2 && GO_EXTLINK_ENABLED=0 CGO_ENABLED=0 go build \
 	   -ldflags "-w -extldflags -static -X main.gitCommit=${COMMIT} -X main.version=${VERSION}" \
 	   -tags netgo -installsuffix netgo \
-	   -o ../manifest-tool github.com/estesp/manifest-tool/v2/cmd/manifest-tool
+	   -o ../manifest-tool github.com/fourierrr/manifest-tool/v2/cmd/manifest-tool
 
 build-container:
 	docker build ${DOCKER_BUILD_ARGS} -t "$(DOCKER_IMAGE)" .

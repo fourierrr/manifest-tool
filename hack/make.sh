@@ -6,7 +6,7 @@ set -e
 #
 # Requirements:
 # - The current directory should be a checkout of the manifest-tool source code
-#   (https://github.com/estesp/manifest-tool). Whatever version is checked out
+#   (https://github.com/fourierrr/manifest-tool). Whatever version is checked out
 #   will be built.
 # - The script is intended to be run inside the docker container specified
 #   in the Dockerfile at the root of the source. In other words:
@@ -19,7 +19,7 @@ set -e
 
 set -o pipefail
 
-export MANIFEST_PKG='github.com/estesp/manifest-tool'
+export MANIFEST_PKG='github.com/fourierrr/manifest-tool'
 export SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export MAKEDIR="$SCRIPTDIR/make"
 

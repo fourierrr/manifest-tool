@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/estesp/manifest-tool/v2/pkg/store"
-	"github.com/estesp/manifest-tool/v2/pkg/types"
+	"github.com/fourierrr/manifest-tool/v2/pkg/store"
+	"github.com/fourierrr/manifest-tool/v2/pkg/types"
 
 	"github.com/containerd/containerd/images"
 	"github.com/containerd/containerd/remotes"

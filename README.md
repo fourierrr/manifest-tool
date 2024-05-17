@@ -18,7 +18,7 @@ up the appropriate platform-specific image reference depending on the platform i
 
 The releases of `manifest-tool` are built using the latest Go version, and binaries for many
 architectures are available as pre-built binaries with each release, found on the
-[GitHub releases](https://github.com/estesp/manifest-tool/releases) page.
+[GitHub releases](https://github.com/fourierrr/manifest-tool/releases) page.
 
 You can also use `manifest-tool` via an existing Docker image automatically generated for a
 large number of architectures with each release. To use this image simply run
@@ -31,7 +31,7 @@ Note that you will need to have a recent version of the Go SDK installed on your
 as `make`.
 
 ```sh
-$ git clone https://github.com/estesp/manifest-tool
+$ git clone https://github.com/fourierrr/manifest-tool
 $ cd manifest-tool && make binary
 ```
 
@@ -235,7 +235,7 @@ If you operate or use a registry claiming conformance to Docker v2.2 spec and AP
 or the OCIv1 image spec and distribution spec and want to confirm manifest list/index
 support please use the pre-configured test script available in this repository.
 
-See the [test-registry.sh script](https://github.com/estesp/manifest-tool/blob/main/integration/test-registry.sh) in this repo's **integration** directory
+See the [test-registry.sh script](https://github.com/fourierrr/manifest-tool/blob/main/integration/test-registry.sh) in this repo's **integration** directory
 for further details. A simple example is shown here:
 
 ```sh

@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/estesp/manifest-tool/v2/pkg/registry"
-	"github.com/estesp/manifest-tool/v2/pkg/types"
+	"github.com/fourierrr/manifest-tool/v2/pkg/registry"
+	"github.com/fourierrr/manifest-tool/v2/pkg/types"
 
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/sirupsen/logrus"
