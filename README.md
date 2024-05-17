@@ -1,3 +1,7 @@
+## add additional os/arch to manifest-tool
+
+---- 
+
 ## manifest-tool
 
 `manifest-tool` is a command line utility used to view or push multi-platform container image
