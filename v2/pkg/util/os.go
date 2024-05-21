@@ -1,6 +1,9 @@
 package util
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 //go:generate go run osgen.go
 
@@ -36,6 +39,9 @@ func IsValidOSArch(os string, arch string, variant string) bool {
 			return true
 		}
 	default:
+		if strings.Contains(arch, "dadi") || strings.Contains(arch, "overlaybd") {
+			return true
+		}
 		return false
 	}
 	return false
